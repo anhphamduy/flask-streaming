@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Font awesomes -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+
+
+  <title>Flask Streaming</title>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- import custom js -->
+  <style>
+    .not-visible {
+      display: none;
+      
+    }
+    .container-fluid {
+      margin-top: 32px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Flask Streaming</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li id="home-button" class="not-active nav-item active">
+          <a class="not-active nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li id="contact-button" class="not-active nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <!-- <i class="fas fa-spinner spinning"></i> -->
+
+  <div id="home-content" class="container-fluid">
+    <h2>Installation</h2>
+    <ul>
+      <li>Activate the virtual environment and install all the necessary packages.</li>
+      <li>Run <code>python app.py</code> in the console</li>
+    </ul>
+    <h2>Running</h2>
+    <ul>
+      <li>When starting the app, it should display the public host address of your computer.</li>
+      <li>By using that public host address, you could access the streaming video in any devices.</li>
+    </ul>
+    <h2>
+      How does it work?
+    </h2>
+    <p>Python comes with a feauture called generators. By using generators, we are able to get all requests all process
+      it one by one at the same time (in this case 250ms/pic). This is extremely important for streaming as order of
+      events matters.</p>
+    <p>For the application, on the front end, images are captured 5 times per second, then will be sent to the server.
+      The server will process each frame one by one then send back to all other clients</p>
+  </div>
+
+  <div id="contact-content" class="container-fluid not-visible">
+    <h4>Please do ask if you have any questions. We can be contacted via:</h4>
+    <ul>
+      <li><strong>Email:</strong> phamduyanh249@live.com</li>
+      <li><strong>Phong number:</strong> +61 414 968 373</li>
+    </ul>
+  </div>
+
+
+</body>
+
+
+<script>
+  document.getElementById("home-button").addEventListener("click", navigateToHome)
+  document.getElementById("contact-button").addEventListener("click", navigateToContact)
+  function navigateToContact() {
+    var homeElement = document.getElementById("home-content")
+    homeElement.classList.add("not-visible")
+    var contactElement = document.getElementById("contact-content")
+    contactElement.classList.remove("not-visible")
+  }
+  function navigateToHome() {
+    var contactElement = document.getElementById("contact-content")
+    contactElement.classList.add("not-visible")
+    var homeElement = document.getElementById("home-content")
+    homeElement.classList.remove("not-visible")
+  }
+
+</script>
+
+</html>
